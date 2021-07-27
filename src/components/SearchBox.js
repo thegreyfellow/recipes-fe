@@ -91,8 +91,8 @@ const SearchBox = () => {
 
   return (
     <Flex direction="column">
-      <Flex>
-        <Flex direction="column" flex={2}>
+      <Flex flexWrap="wrap" justify="space-between">
+        <Flex direction="column" flex={2} minWidth="400px">
           <Flex color="gray" fontWeight="bold" py="20px">
             Enter an ingredient:
           </Flex>
@@ -162,7 +162,7 @@ const SearchBox = () => {
             )}
           </Flex>
         </Flex>
-        <Flex direction="column" flex={1} ml="20px">
+        <Flex direction="column" flex={1} ml="20px" minWidth="195px">
           <Flex color="gray" fontWeight="bold" py="20px">
             Enter number of people:
           </Flex>
@@ -184,7 +184,7 @@ const SearchBox = () => {
             }}
           />
         </Flex>
-        <Flex direction="column" flex={1} ml="20px">
+        <Flex direction="column" flex={1} ml="20px" minWidth="195px">
           <Flex color="gray" fontWeight="bold" py="20px">
             Choose difficulty:
           </Flex>

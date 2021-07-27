@@ -8,7 +8,7 @@ const Recipes = ({ recipes, showMore, reachedEnd }) => {
     <Flex pt="20px" direction="column">
       {recipes && recipes.data && recipes.data.length > 0 ? (
         <>
-          <Flex flexWrap="wrap" justify="space-between">
+          <Flex flexWrap="wrap">
             {recipes.data.map(recipe => {
               return <RecipeCard recipe={recipe} />
             })}
@@ -21,6 +21,7 @@ const Recipes = ({ recipes, showMore, reachedEnd }) => {
               justifySelf="center"
               alignSelf="center"
               width="20%"
+              minWidth="max-content"
               border="1px grey solid"
             >
               <Text>Show more</Text>

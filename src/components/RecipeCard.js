@@ -27,6 +27,7 @@ const RecipeCard = ({ recipe }) => {
       borderRadius="lg"
       overflow="hidden"
       mb="2%"
+      mr="2%"
     >
       <Image src={imageUrl} alt={recipe.name} />
 
