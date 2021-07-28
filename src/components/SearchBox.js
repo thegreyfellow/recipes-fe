@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
+import { useDebouncedValue } from '../common/useDebouncer'
 import {
   Flex,
   Input,
@@ -25,6 +26,23 @@ const SearchBox = () => {
   const [peopleQuantity, setPeopleQuantity] = useState('')
   const [difficulty, setDifficulty] = useState('')
   const difficulties = ['très facile', 'facile', 'Niveau moyen', 'difficile']
+
+  const peopleQuantityDebounced = useDebouncedValue(peopleQuantity, 300)
+
+  const handlePeopleQuantityChange = event => {
+    console.log('hnaya')
+    const value = Number(event.target.value)
+    if (!isNaN(value) && value > 0) {
+      setPeopleQuantity(value)
+    }
+
+    if (event.target.value === '') {
+      if (ingredients.length === 0) {
+        setRecipes(null)
+      }
+      setPeopleQuantity('')
+    }
+  }
 
   useEffect(async () => {
     setReachedEnd(false)
@@ -54,7 +72,7 @@ const SearchBox = () => {
       setRecipes(response.data)
       setPage(response.data.pagination.next)
     }
-  }, [ingredients, peopleQuantity, difficulty])
+  }, [ingredients, peopleQuantityDebounced, difficulty])
 
   const showMore = async () => {
     let ingredientsParams = ''
@@ -169,19 +187,7 @@ const SearchBox = () => {
           <Input
             bg="white"
             placeholder="People quantity"
-            onChange={event => {
-              const value = Number(event.target.value)
-              if (!isNaN(value) && value > 0) {
-                setPeopleQuantity(value)
-              }
-
-              if (event.target.value === '') {
-                if (ingredients.length === 0) {
-                  setRecipes(null)
-                }
-                setPeopleQuantity('')
-              }
-            }}
+            onChange={handlePeopleQuantityChange}
           />
         </Flex>
         <Flex direction="column" flex={1} ml="20px" minWidth="195px">
